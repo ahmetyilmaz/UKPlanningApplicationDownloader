@@ -1,12 +1,19 @@
-# Planning Application Downloader
+# 🏗️ UK Planning Application Downloader
 
-A Google Chrome extension providing an easy method to download all assets from a planning application.
+A clean, fast, and modern web extension allowing you to bulk-download all files and documents from UK local council planning applications with a single click. No more downloading hundreds of PDF files manually!
 
-Download it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/cinlipnkidejahanokkmacfedcnkklga)
+## ✨ Features
 
-## Adding Planning Portal Domains
+- **One-click bulk downloads**: Instantly grab every asset attached to a planning application.
+- **Intelligent Organization**: Automatically organizes downloads into subfolders named `[Reference] [Address]` (Chrome and Edge).
+- **Universal Compatibility**: Works in all major browsers (Safari, Chrome, Edge, Firefox).
+- **Sanitized Naming**: Downloads the application summary as a clean `[Reference] [Address].json` file.
+- **Manifest V3 compliant**: Modern, secure, and performant.
+- **Zero dependencies**: Built with pure, 100% Vanilla JavaScript.
 
-At present only the following planning portals have been added to the extension:
+## 🌍 Supported Planning Portals
+
+Our extension supports the planning portals of the following UK councils and authorities:
 
 - [Barking and Dagenham](http://paplan.lbbd.gov.uk/online-applications/)
 - [Barnet](https://publicaccess.barnet.gov.uk/online-applications/)
@@ -22,74 +29,73 @@ At present only the following planning portals have been added to the extension:
 - [Enfield](https://planningandbuildingcontrol.enfield.gov.uk/online-applications/)
 - [Greenwich](https://planning.royalgreenwich.gov.uk/online-applications/)
 - [Hammersmith and Fulham](http://public-access.lbhf.gov.uk/online-applications/)
-- [Newcastle City](https://publicaccessapplications.newcastle.gov.uk/online-applications/)
-- [Newham](https://pa.newham.gov.uk/online-applications/)
 - [Lambeth](https://planning.lambeth.gov.uk/online-applications/)
 - [Lewisham](https://planning.lewisham.gov.uk/online-applications/)
-- [London Legacy](http://planningregister.londonlegacy.co.uk/)
-- [Norwich City](https://planning.norwich.gov.uk/online-applications/)
 - [Manchester](https://pa.manchester.gov.uk/online-applications/)
+- [Newcastle City](https://publicaccessapplications.newcastle.gov.uk/online-applications/)
+- [Newham](https://pa.newham.gov.uk/online-applications/)
+- [Norwich City](https://planning.norwich.gov.uk/online-applications/)
 - [Southwark](https://planning.southwark.gov.uk/online-applications/)
 - [Sutton](http://planningregister.sutton.gov.uk/online-applications/)
 - [Tower Hamlets](https://development.towerhamlets.gov.uk/online-applications/)
 - [Wakefield](https://planning.wakefield.gov.uk/online-applications/)
 - [Westminster](https://idoxpa.westminster.gov.uk/online-applications/)
 
-If you would like another planning portal domain to be added please [create an issue on GitHub](https://github.com/StudioLE/PlanningApplicationDownloader/issues/new). Or if you have a little coding experience you can create a pull request after forking the repository and adding the details of the portal to the following files:
+*If your local council isn't listed, feel free to open an issue or submit a Pull Request!*
 
-```
-README.md
-src/manifest.json
-```
+## 🚀 Installation & Developer Guide
 
-## Releases
+### Getting Started
 
-All tagged releases are available at [/releases](https://github.com/StudioLE/PlanningApplicationDownloader/releases).
+Since the extension relies on zero build tools or external dependencies, getting started locally is incredibly simple:
 
-## Contributing
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ahmetyilmaz/UKPlanningApplicationDownloader.git
+   cd UKPlanningApplicationDownloader
+   ```
 
-I'm always on the look out for collaborators so feel free to suggest new features, get in touch or just fork at will.
+### Chrome, Brave, Edge
 
-## Developer Install
+1. Open your browser's extension management page (e.g., `chrome://extensions/`).
+2. Enable **Developer mode**.
+3. Click **Load unpacked** and select the `src/` directory from the cloned repository.
 
-Clone the repository
+### Safari
 
-```
-git clone https://github.com/StudioLE/PlanningApplicationDownloader.git PlanningApplicationDownloader
-```
+Safari requires a different setup process:
 
-Enter the directory and install the dependencies. For this step you'll need to have [Node.js](https://nodejs.org/) and [bower](http://bower.io/) installed.
+1. Open **Safari > Settings > Extensions**
+2. Click **Allow Extension**
+3. Click **Load Unpacked** and select the `src/` directory from the cloned repository
+4. Grant necessary permissions when prompted
 
-```
-cd PlanningApplicationDownloader
-npm install
-```
+### Development Flow
 
-Behind the scenes this will also call `bower install`.
+- Any changes you make to the source files will reflect immediately after clicking the reload button (🔄) on the extension card.
 
-Now run the default gulp task to produce an up to date build
+### Browser Compatibility
 
-```
-gulp build
-```
+| Browser | Support | Method | Features |
+|---------|---------|--------|----------|
+| Chrome  | Full    | API/Blob | Subfolders Supported |
+| Edge    | Full    | API/Blob | Subfolders Supported |
+| Firefox | Full    | Blob     | Universal Compatibility |
+| Safari  | Full    | Blob     | Universal Compatibility |
 
-## Developer usage
+## 🤝 Contributing
 
-A number of development tasks can be performed via gulp.
+Contributions are always welcome! If you want to add support for a new planning portal:
+1. Fork the repository.
+2. Add the portal's target URL pattern to the `matches` array in `manifest.json`.
+3. Add the council to the supported list in this `README.md`.
+4. Open a Pull Request!
 
-Produce a build from the app source
-```
-gulp build
-```
-Clean the `build` directory 
-```
-gulp clean
-```
-Bump the package version numbers
-```
-gulp bump
-```
+## 📜 License
 
-## Thanks
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-[Roof Icon](https://thenounproject.com/term/roof/369098)  by Juan Pablo Bravo from the Noun Project. Available under a [Creative Commons license](https://creativecommons.org/licenses/by/3.0/us/).
+---
+**Acknowledgements**:
+- This project is a fork of [StudioLE/PlanningApplicationDownloader](https://github.com/StudioLE/PlanningApplicationDownloader). Huge kudos to them for the original implementation!
+- Construction Icon from the Noun Project under a Creative Commons license.

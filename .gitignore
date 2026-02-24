@@ -1,12 +1,2 @@
-!.gitkeep
 .DS_Store
-.idea
-tmp
-
-node_modules/
-bower_components/
-build/
-releases/
-screenshots/
-
-build.pem
+AGENTS.md

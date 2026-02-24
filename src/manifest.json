@@ -1,54 +1,58 @@
 {
-  "manifest_version": 2,
-  "name": "Planning Application Downloader",
-  "version": "0.0.9",
+  "manifest_version": 3,
+  "name": "UK Planning Application Downloader",
+  "description": "Instantly bulk-download all documents and assets from UK local council planning applications with a single click.",
+  "version": "0.1",
+  "icons": {
+    "16": "icons/construction-16x16.png",
+    "19": "icons/construction-16x16.png",
+    "32": "icons/construction-48x48.png",
+    "38": "icons/construction-48x48.png",
+    "48": "icons/construction-48x48.png",
+    "64": "icons/construction-48x48.png",
+    "96": "icons/construction-128x128.png",
+    "128": "icons/construction-128x128.png",
+    "256": "icons/construction-512x512.png",
+    "512": "icons/construction-512x512.png"
+  },
   "permissions": [
-    "contextMenus", 
     "downloads"
   ],
-  "icons": {
-    "16": "icons/roof-16px.png",
-    "48": "icons/roof-48px.png",
-    "128": "icons/roof-128px.png"
-  },
-  "content_scripts": [{
-    "matches": [
-      "http://paplan.lbbd.gov.uk/online-applications/*",
-      "https://publicaccess.barnet.gov.uk/online-applications/*",
-      "http://pa.bexley.gov.uk/online-applications/*",
-      "https://planapp.bracknell-forest.gov.uk/online-applications/*",
-      "https://pa.brent.gov.uk/online-applications/*",
-      "https://searchapplications.bromley.gov.uk/online-applications/*",
-      "http://planning.cornwall.gov.uk/online-applications/*",
-      "https://publicaccess3.croydon.gov.uk/online-applications/*",
-      "https://pam.ealing.gov.uk/online-applications/*",
-      "http://applications.ebbsfleetdc.org.uk/online-applications/*",
-      "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/*",
-      "https://planningandbuildingcontrol.enfield.gov.uk/online-applications/*",
-      "https://planning.royalgreenwich.gov.uk/online-applications/*",
-      "http://public-access.lbhf.gov.uk/online-applications/*",
-      "https://publicaccessapplications.newcastle.gov.uk/online-applications/*",
-      "https://pa.newham.gov.uk/online-applications/*",
-      "https://planning.lambeth.gov.uk/online-applications/*",
-      "https://planning.lewisham.gov.uk/online-applications/*",
-      "http://planningregister.londonlegacy.co.uk/*",
-      "https://pa.manchester.gov.uk/online-applications/*",
-      "https://planning.norwich.gov.uk/online-applications/*",
-      "https://planning.southwark.gov.uk/online-applications/*",
-      "http://planningregister.sutton.gov.uk/online-applications/*",
-      "https://development.towerhamlets.gov.uk/online-applications/*",
-      "https://planning.wakefield.gov.uk/online-applications/*",
-      "https://idoxpa.westminster.gov.uk/online-applications/*"
-    ],
-    "js": [
-      "js/vendor.js",
-      "js/get-assets.js",
-      "js/get-summary.js"
-    ]
-  }],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ]
-  }
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://paplan.lbbd.gov.uk/online-applications/*",
+        "https://publicaccess.barnet.gov.uk/online-applications/*",
+        "http://pa.bexley.gov.uk/online-applications/*",
+        "https://planapp.bracknell-forest.gov.uk/online-applications/*",
+        "https://pa.brent.gov.uk/online-applications/*",
+        "https://searchapplications.bromley.gov.uk/online-applications/*",
+        "http://planning.cornwall.gov.uk/online-applications/*",
+        "https://publicaccess3.croydon.gov.uk/online-applications/*",
+        "https://pam.ealing.gov.uk/online-applications/*",
+        "http://applications.ebbsfleetdc.org.uk/online-applications/*",
+        "https://citydev-portal.edinburgh.gov.uk/idoxpa-web/*",
+        "https://planningandbuildingcontrol.enfield.gov.uk/online-applications/*",
+        "https://planning.royalgreenwich.gov.uk/online-applications/*",
+        "http://public-access.lbhf.gov.uk/online-applications/*",
+        "https://publicaccessapplications.newcastle.gov.uk/online-applications/*",
+        "https://pa.newham.gov.uk/online-applications/*",
+        "https://planning.lambeth.gov.uk/online-applications/*",
+        "https://planning.lewisham.gov.uk/online-applications/*",
+        "https://pa.manchester.gov.uk/online-applications/*",
+        "https://planning.norwich.gov.uk/online-applications/*",
+        "https://planning.southwark.gov.uk/online-applications/*",
+        "http://planningregister.sutton.gov.uk/online-applications/*",
+        "https://development.towerhamlets.gov.uk/online-applications/*",
+        "https://planning.wakefield.gov.uk/online-applications/*",
+        "https://idoxpa.westminster.gov.uk/online-applications/*"
+      ],
+      "js": [
+        "js/content.js"
+      ]
+    }
+  ]
 }

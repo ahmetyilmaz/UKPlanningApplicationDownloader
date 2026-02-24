@@ -1,80 +1,26 @@
-var planning_portals = []
-
 /**
- * Send getSummary request
+ * UK Planning Application Downloader - Background Script
+ * Handles downloading files into subfolders using the downloads API.
+ * This is primarily for Chrome/Edge support.
  */
-var sendGetSummary = function(info, tab) {
-  chrome.tabs.query({
-    active: true,
-    currentWindow: true
-  }, function(tabs) {
-    // Send message to get-summary.js
-    chrome.tabs.sendMessage(tabs[0].id, {
-      message: 'getSummary'
-    })
-  })
-}
 
-/**
- * Send getAssets request
- */
-var sendGetAssets = function(info, tab) {
-  chrome.tabs.query({
-    active: true,
-    currentWindow: true
-  }, function(tabs) {
-    // Send message to get-assets.js
-    chrome.tabs.sendMessage(tabs[0].id, {
-      message: 'getAssets'
-    })
-  })
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.action === 'download') {
+        const { url, filename } = message;
 
-  // Download the application summary as well
-  sendGetSummary(info, tab)
-}
+        chrome.downloads.download({
+            url: url,
+            filename: filename,
+            conflictAction: 'uniquify'
+        }, (downloadId) => {
+            if (chrome.runtime.lastError) {
+                console.error('Download failed:', chrome.runtime.lastError.message);
+                sendResponse({ success: false, error: chrome.runtime.lastError.message });
+            } else {
+                sendResponse({ success: true, downloadId: downloadId });
+            }
+        });
 
-/**
- * Download assets
- */
-var downloadAssets = function(assets) {
-  assets.forEach(function(asset) {
-    var dl = {
-      url: asset.href
+        return true; // Asynchronous response
     }
-    // Use filename if specificed. If not let Chrome handle it.
-    if(asset.filename) {
-      dl.filename = asset.filename
-    }
-    chrome.downloads.download(dl)
-  })
-}
-
-/**
- * Context menu entry for Download All
- */
-chrome.contextMenus.create({
-  title: 'Download All Application Documents',
-  onclick: sendGetAssets,
-  documentUrlPatterns: planning_portals
-})
-
-/**
- * Context menu entry for Download Summary
- */
-chrome.contextMenus.create({
-  title: 'Download Application Summary',
-  onclick: sendGetSummary,
-  documentUrlPatterns: planning_portals
-})
-
-/**
- * Message listener
- */
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  if(request.message === 'downloadAssets') {
-    downloadAssets(request.assets)
-  }
-  else {
-    alert('Planning Application Downloader: unknown message: ' + request.message)
-  }
-})
+});
